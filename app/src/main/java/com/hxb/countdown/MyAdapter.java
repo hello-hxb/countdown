@@ -24,6 +24,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public MyAdapter(List<ItemData> dataList) {
         mDataList = dataList;
 
+        //第一步
         mTextViewManager = new TextViewManager(dataList,  "倒计时已结束!");
     }
 
@@ -42,6 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         TextView textView = holder.itemView.findViewById(R.id.tv_millis);
 
+        //第二步
         mTextViewManager.attach(textView,holder);
 
     }

@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //在合适的位置停止倒计时
         mAdapter.getTextViewManager().stop();
     }
 }
