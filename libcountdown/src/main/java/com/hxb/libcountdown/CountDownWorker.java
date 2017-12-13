@@ -55,6 +55,7 @@ public class CountDownWorker {
      */
     public void stop() {
         stop = true;
+        mDataList.clear();
     }
 
 }

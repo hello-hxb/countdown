@@ -53,6 +53,9 @@ public class TextViewManager {
     }
 
     private void setTextViewText(RecyclerView.ViewHolder viewHolder, TextView textView) {
+
+//        Log.d(getClass().getCanonicalName(),"setText...");
+
         //获取当前的位置
         int position = viewHolder.getLayoutPosition();
         if (mDataList != null && position >= 0 && position < mDataList.size()) {
@@ -64,6 +67,7 @@ public class TextViewManager {
                 str = time.mill2Str(millis);
             } else {
                 str = mEndStr;
+                mTextViewList.remove(textView);
             }
             textView.setText(str);
         }
@@ -72,5 +76,6 @@ public class TextViewManager {
     public void stop() {
         stop = true;
         mCountDownWorker.stop();
+        mTextViewList.clear();
     }
 }
