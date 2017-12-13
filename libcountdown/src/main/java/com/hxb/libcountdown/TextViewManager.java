@@ -32,7 +32,7 @@ public class TextViewManager {
     }
 
     public void attach(final TextView textView, final RecyclerView.ViewHolder viewHolder) {
-        textView.setText("");
+        setTextViewText(viewHolder, textView);
         boolean contains = mTextViewList.contains(textView);
 
         if (!contains) {
@@ -42,28 +42,30 @@ public class TextViewManager {
                     if (stop) {
                         return;
                     }
-                    //获取当前的位置
-                    int position = viewHolder.getLayoutPosition();
-                    if (mDataList != null && position >= 0 && position < mDataList.size()) {
-
-                        ITime time = mDataList.get(position);
-                        long millis = time.getMillisecond();
-                        String str;
-                        if (millis > 0) {
-                            str = time.mill2Str(millis);
-                        } else {
-                            str = mEndStr;
-                        }
-                        textView.setText(str);
-
-//                        Log.d(getClass().getCanonicalName(), "position: " + position + " millis : " + millis);
-                    }
+                    setTextViewText(viewHolder, textView);
 
                     textView.postDelayed(this, 1000);
                 }
             };
             mTextViewList.add(textView);
             textView.post(runnable);
+        }
+    }
+
+    private void setTextViewText(RecyclerView.ViewHolder viewHolder, TextView textView) {
+        //获取当前的位置
+        int position = viewHolder.getLayoutPosition();
+        if (mDataList != null && position >= 0 && position < mDataList.size()) {
+
+            ITime time = mDataList.get(position);
+            long millis = time.getMillisecond();
+            String str;
+            if (millis > 0) {
+                str = time.mill2Str(millis);
+            } else {
+                str = mEndStr;
+            }
+            textView.setText(str);
         }
     }
 
